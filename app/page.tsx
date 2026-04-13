@@ -1,9 +1,19 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Download, Code2, Monitor, Github, Linkedin, Layers, Phone, ExternalLink, Globe, Cpu, Box } from "lucide-react";
+import { Mail, Download, Code2, Monitor, Github, Linkedin, Layers, Phone, ExternalLink, Globe, Cpu, Box, Languages } from "lucide-react";
+import { translations } from "@/lib/translations";
 
 export default function Home() {
+  const [lang, setLang] = useState<"es" | "en">("es");
+  const t = translations[lang];
+
+  const toggleLang = () => {
+    setLang((prev) => (prev === "es" ? "en" : "es"));
+  };
   return (
     <div
       className="min-h-screen flex flex-col"
@@ -22,19 +32,30 @@ export default function Home() {
 
           {/* Links */}
           <div className="hidden items-center gap-10 md:flex">
-            <a href="#about" className="text-sm font-medium text-[#8898bb] transition-colors hover:text-white">About</a>
-            <a href="#stack" className="text-sm font-medium text-[#8898bb] transition-colors hover:text-white">Stack</a>
-            <a href="#projects" className="text-sm font-medium text-[#8898bb] transition-colors hover:text-white">Projects</a>
-            <a href="#contact" className="text-sm font-medium text-[#8898bb] transition-colors hover:text-white">Contact</a>
+            <a href="#about" className="text-sm font-medium text-[#8898bb] transition-colors hover:text-white">{t.nav.about}</a>
+            <a href="#stack" className="text-sm font-medium text-[#8898bb] transition-colors hover:text-white">{t.nav.stack}</a>
+            <a href="#projects" className="text-sm font-medium text-[#8898bb] transition-colors hover:text-white">{t.nav.projects}</a>
+            <a href="#contact" className="text-sm font-medium text-[#8898bb] transition-colors hover:text-white">{t.nav.contact}</a>
           </div>
 
-          {/* CTA */}
-          <Button
-            asChild
-            className="rounded-lg bg-[#2a3cad] px-6 py-2 text-sm font-semibold text-white shadow-lg shadow-[#2a3cad]/30 hover:bg-[#3d5bd9] hover:scale-105 transition-all"
-          >
-            <a href="#contact">Hire Me</a>
-          </Button>
+          {/* CTA & Lang Toggle */}
+          <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleLang}
+              className="rounded-lg border border-[#1e2a5e] text-[#8898bb] hover:border-[#3d5bd9] hover:text-white transition-all"
+              title={lang === "es" ? "Switch to English" : "Cambiar a Español"}
+            >
+              <Languages className="h-5 w-5" />
+            </Button>
+            <Button
+              asChild
+              className="rounded-lg bg-[#2a3cad] px-6 py-2 text-sm font-semibold text-white shadow-lg shadow-[#2a3cad]/30 hover:bg-[#3d5bd9] hover:scale-105 transition-all"
+            >
+              <a href="#contact">{t.nav.hire}</a>
+            </Button>
+          </div>
         </nav>
       </header>
 
@@ -48,7 +69,7 @@ export default function Home() {
           {/* Badge */}
           <div className="animate-fade-in-up flex items-center gap-2 rounded-full border border-[#2a3cad]/60 bg-[#2a3cad]/10 px-4 py-1.5">
             <span className="pulse-dot h-2 w-2 rounded-full bg-[#3d5bd9]" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#6580e0]">Available for Projects</span>
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#6580e0]">{t.hero.badge}</span>
           </div>
 
           {/* Name */}
@@ -63,7 +84,7 @@ export default function Home() {
 
           {/* Description */}
           <p className="animate-fade-in-up animate-delay-200 max-w-md text-base leading-relaxed text-[#8898bb]">
-            Técnico en Programación de Software Full Stack &amp; IT Support Specialist. Crafting high-performance digital solutions with a Midnight Premium aesthetic.
+            {t.hero.description}
           </p>
 
           {/* Buttons */}
@@ -72,9 +93,9 @@ export default function Home() {
               asChild
               className="flex h-12 items-center gap-2 rounded-xl bg-[#2a3cad] px-8 text-sm font-bold text-white shadow-xl shadow-[#2a3cad]/40 hover:bg-[#3d5bd9] hover:scale-105 transition-all"
             >
-              <a href="#">
+              <a href="/Luis_Gotopo Hoja de vida.pdf" download="Luis_Gotopo_CV.pdf">
                 <Download className="h-4 w-4" />
-                Download CV
+                {t.hero.downloadCV}
               </a>
             </Button>
             <Button
@@ -84,7 +105,7 @@ export default function Home() {
             >
               <a href="#contact">
                 <Mail className="h-4 w-4" />
-                Contact Me
+                {t.hero.contactMe}
               </a>
             </Button>
           </div>
@@ -112,12 +133,9 @@ export default function Home() {
 
       {/* ── STACK SECTION ── */}
       <section id="stack" className="mx-auto w-full max-w-7xl px-8 pb-20">
-        <p className="mb-8 text-center text-xs font-semibold uppercase tracking-widest text-[#3d5bd9]">Tecnologías & Habilidades</p>
+        <p className="mb-8 text-center text-xs font-semibold uppercase tracking-widest text-[#3d5bd9]">{t.stack.title}</p>
         <div className="flex flex-wrap justify-center gap-4">
-          {[
-            "HTML / CSS", "JavaScript", "React.js", "Next.js", "Node.js",
-            "TypeScript", "SQL", "Git", "Soporte TI", "Redes",
-          ].map((skill) => (
+          {t.stack.skills.map((skill) => (
             <span
               key={skill}
               className="rounded-lg border border-[#1e2a5e] bg-[#0f1530]/80 px-5 py-2 text-sm font-medium text-[#8898bb] transition-all hover:border-[#3d5bd9] hover:text-white"
@@ -131,7 +149,7 @@ export default function Home() {
       {/* ── EXPERIENCE ── */}
       <section className="border-t border-[#1e2a5e]/60 bg-[#0c1235]/40 py-24">
         <div className="mx-auto max-w-7xl px-8">
-          <p className="mb-12 text-center text-xs font-semibold uppercase tracking-widest text-[#3d5bd9]">Experiencia Profesional</p>
+          <p className="mb-12 text-center text-xs font-semibold uppercase tracking-widest text-[#3d5bd9]">{t.experience.title}</p>
           <div className="grid gap-8 md:grid-cols-2">
             {/* Card 1 */}
             <div
@@ -141,12 +159,12 @@ export default function Home() {
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#2a3cad]/20 border border-[#2a3cad]/30">
                 <Code2 className="h-6 w-6 text-[#3d5bd9]" />
               </div>
-              <h3 className="mb-3 text-xl font-bold text-white">Full Stack Development</h3>
+              <h3 className="mb-3 text-xl font-bold text-white">{t.experience.card1.title}</h3>
               <p className="text-sm leading-relaxed text-[#8898bb]">
-                Desarrollo de aplicaciones web completas, desde interfaces dinámicas hasta APIs robustas y gestión de bases de datos.
+                {t.experience.card1.description}
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
-                {["Frontend", "Backend", "Bases de Datos", "APIs REST"].map((t) => (
+                {t.experience.card1.tags.map((t) => (
                   <span key={t} className="rounded-md border border-[#1e2a5e]/80 bg-[#2a3cad]/10 px-3 py-1 text-xs text-[#6580e0]">{t}</span>
                 ))}
               </div>
@@ -160,12 +178,12 @@ export default function Home() {
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#2a3cad]/20 border border-[#2a3cad]/30">
                 <Monitor className="h-6 w-6 text-[#3d5bd9]" />
               </div>
-              <h3 className="mb-3 text-xl font-bold text-white">Soporte TI & Usuarios</h3>
+              <h3 className="mb-3 text-xl font-bold text-white">{t.experience.card2.title}</h3>
               <p className="text-sm leading-relaxed text-[#8898bb]">
-                Soporte técnico especializado, gestión de infraestructura tecnológica, resolución de incidencias y atención al usuario corporativo.
+                {t.experience.card2.description}
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
-                {["Soporte Nivel 1-2", "Redes", "Hardware", "Mantenimiento"].map((t) => (
+                {t.experience.card2.tags.map((t) => (
                   <span key={t} className="rounded-md border border-[#1e2a5e]/80 bg-[#2a3cad]/10 px-3 py-1 text-xs text-[#6580e0]">{t}</span>
                 ))}
               </div>
@@ -176,12 +194,12 @@ export default function Home() {
 
       {/* ── PROJECTS ── */}
       <section id="projects" className="mx-auto w-full max-w-7xl px-8 py-24">
-        <p className="mb-4 text-center text-xs font-semibold uppercase tracking-widest text-[#3d5bd9]">Portafolio</p>
+        <p className="mb-4 text-center text-xs font-semibold uppercase tracking-widest text-[#3d5bd9]">{t.projects.badge}</p>
         <h2 className="mb-4 text-center text-4xl font-extrabold text-white md:text-5xl">
-          Mis <span className="text-[#3d5bd9]">Proyectos</span>
+          {lang === "es" ? "Mis " : "My "} <span className="text-[#3d5bd9]">{lang === "es" ? "Proyectos" : "Projects"}</span>
         </h2>
         <p className="mb-16 text-center text-base text-[#8898bb] max-w-lg mx-auto">
-          Soluciones reales construidas con código limpio y tecnologías modernas.
+          {t.projects.description}
         </p>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -198,7 +216,7 @@ export default function Home() {
               <div className="flex gap-2">
                 <a
                   href="https://github.com/luigi123-bot/casalenaaaa.git"
-                  title="Ver código en GitHub"
+                  title={t.projects.viewGithub}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2a5e] text-[#8898bb] hover:border-[#3d5bd9] hover:text-white transition-all"
@@ -207,7 +225,7 @@ export default function Home() {
                 </a>
                 <a
                   href="https://casalena.netlify.app/"
-                  title="Ver sitio en vivo"
+                  title={t.projects.viewLive}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2a5e] text-[#8898bb] hover:border-[#3d5bd9] hover:text-white transition-all"
@@ -218,11 +236,11 @@ export default function Home() {
             </div>
             <div className="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-0.5">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              <span className="text-xs font-medium text-emerald-400">Completado</span>
+              <span className="text-xs font-medium text-emerald-400">{t.projects.statusCompleted}</span>
             </div>
-            <h3 className="mb-2 text-lg font-bold text-white">Casaleña</h3>
+            <h3 className="mb-2 text-lg font-bold text-white">{t.projects.project1.title}</h3>
             <p className="mb-5 flex-1 text-sm leading-relaxed text-[#8898bb]">
-              Plataforma web completa para Casaleña. Incluye navegación dinámica, gestión de contenido y experiencia de usuario moderna con diseño responsivo.
+              {t.projects.project1.description}
             </p>
             <div className="flex flex-wrap gap-2">
               {["JavaScript", "HTML/CSS", "Node.js", "MySQL"].map((t) => (
@@ -243,7 +261,7 @@ export default function Home() {
               <div className="flex gap-2">
                 <a
                   href="https://github.com/luigi123-bot/inventarioti.git"
-                  title="Ver código en GitHub"
+                  title={t.projects.viewGithub}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2a5e] text-[#8898bb] hover:border-[#3d5bd9] hover:text-white transition-all"
@@ -252,7 +270,7 @@ export default function Home() {
                 </a>
                 <a
                   href="https://nventarioti.netlify.app/login"
-                  title="Ver aplicación en vivo"
+                  title={t.projects.viewLive}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2a5e] text-[#8898bb] hover:border-[#3d5bd9] hover:text-white transition-all"
@@ -263,11 +281,11 @@ export default function Home() {
             </div>
             <div className="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-0.5">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              <span className="text-xs font-medium text-emerald-400">Completado</span>
+              <span className="text-xs font-medium text-emerald-400">{t.projects.statusCompleted}</span>
             </div>
-            <h3 className="mb-2 text-lg font-bold text-white">InventarioTI</h3>
+            <h3 className="mb-2 text-lg font-bold text-white">{t.projects.project2.title}</h3>
             <p className="mb-5 flex-1 text-sm leading-relaxed text-[#8898bb]">
-              Sistema de gestión de inventario para activos tecnológicos. Control de equipos, asignación a usuarios, historial de mantenimiento y alertas de stock.
+              {t.projects.project2.description}
             </p>
             <div className="flex flex-wrap gap-2">
               {["HTML/CSS", "JavaScript", "PHP", "MySQL"].map((t) => (
@@ -288,7 +306,7 @@ export default function Home() {
               <div className="flex gap-2">
                 <a
                   href="https://github.com/luigi123-bot/techrevive.git"
-                  title="Ver código en GitHub"
+                  title={t.projects.viewGithub}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2a5e] text-[#8898bb] hover:border-[#3d5bd9] hover:text-white transition-all"
@@ -297,7 +315,7 @@ export default function Home() {
                 </a>
                 <a
                   href="https://techrevive.privatech.me/"
-                  title="Ver sitio en vivo"
+                  title={t.projects.viewLive}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2a5e] text-[#8898bb] hover:border-[#3d5bd9] hover:text-white transition-all"
@@ -308,11 +326,11 @@ export default function Home() {
             </div>
             <div className="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-0.5">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              <span className="text-xs font-medium text-emerald-400">Completado</span>
+              <span className="text-xs font-medium text-emerald-400">{t.projects.statusCompleted}</span>
             </div>
-            <h3 className="mb-2 text-lg font-bold text-white">TechRevive</h3>
+            <h3 className="mb-2 text-lg font-bold text-white">{t.projects.project3.title}</h3>
             <p className="mb-5 flex-1 text-sm leading-relaxed text-[#8898bb]">
-              Plataforma de soluciones informativas y soporte técnico. Ofrece guías, herramientas y recursos para la optimización de sistemas y resolución de problemas.
+              {t.projects.project3.description}
             </p>
             <div className="flex flex-wrap gap-2">
               {["Next.js", "TypeScript", "Tailwind CSS", "Lucide"].map((t) => (
@@ -353,11 +371,11 @@ export default function Home() {
             </div>
             <div className="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-0.5">
               <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse" />
-              <span className="text-xs font-medium text-blue-400">Completado</span>
+              <span className="text-xs font-medium text-blue-400">{t.projects.statusInProduction}</span>
             </div>
-            <h3 className="mb-2 text-lg font-bold text-white">Portafolio Personal</h3>
+            <h3 className="mb-2 text-lg font-bold text-white">{t.projects.project4.title}</h3>
             <p className="mb-5 flex-1 text-sm leading-relaxed text-[#8898bb]">
-              Este mismo sitio web. Diseño "Midnight Premium" con Next.js 15, Tailwind CSS v4 y Shadcn UI, animaciones y paleta Navy &amp; Black.
+              {t.projects.project4.description}
             </p>
             <div className="flex flex-wrap gap-2">
               {["Next.js", "TypeScript", "Tailwind v4", "Shadcn"].map((t) => (
@@ -378,7 +396,7 @@ export default function Home() {
               <div className="flex gap-2">
                 <a
                   href="https://github.com/luigi123-bot/thiartd-3d2.git"
-                  title="Ver código en GitHub"
+                  title={t.projects.viewGithub}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2a5e] text-[#8898bb] hover:border-[#3d5bd9] hover:text-white transition-all"
@@ -387,7 +405,7 @@ export default function Home() {
                 </a>
                 <a
                   href="https://thiart3d.netlify.app/"
-                  title="Ver sitio en vivo"
+                  title={t.projects.viewLive}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2a5e] text-[#8898bb] hover:border-[#3d5bd9] hover:text-white transition-all"
@@ -398,11 +416,11 @@ export default function Home() {
             </div>
             <div className="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-0.5">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              <span className="text-xs font-medium text-emerald-400">Completado</span>
+              <span className="text-xs font-medium text-emerald-400">{t.projects.statusCompleted}</span>
             </div>
-            <h3 className="mb-2 text-lg font-bold text-white">Thiart 3D</h3>
+            <h3 className="mb-2 text-lg font-bold text-white">{t.projects.project5.title}</h3>
             <p className="mb-5 flex-1 text-sm leading-relaxed text-[#8898bb]">
-              Plataforma para la exhibición de proyectos de arte 3D y diseño. Una experiencia inmersiva que combina creatividad digital con tecnologías web modernas.
+              {t.projects.project5.description}
             </p>
             <div className="flex flex-wrap gap-2">
               {["React", "Three.js", "Tailwind CSS", "Vite"].map((t) => (
@@ -416,9 +434,10 @@ export default function Home() {
 
       {/* ── CONTACT ── */}
       <section id="contact" className="mx-auto w-full max-w-7xl px-8 py-28 text-center">
-        <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#3d5bd9]">¿Hablamos?</p>
+        <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#3d5bd9]">{t.contact.badge}</p>
         <h2 className="mb-12 text-4xl font-extrabold text-white md:text-5xl">
-          ¿Listo para tu próximo <span className="text-[#3d5bd9]">proyecto</span>?
+          {lang === "es" ? "¿Listo para tu próximo " : "Ready for your next "}
+          <span className="text-[#3d5bd9]">{lang === "es" ? "proyecto" : "project"}?</span>
         </h2>
         <div className="flex flex-col items-center gap-5 mb-14">
           <a
@@ -466,12 +485,12 @@ export default function Home() {
             <span className="text-sm font-bold text-white">Luis Alberto</span>
           </div>
           <p className="text-sm text-[#8898bb]">
-            © {new Date().getFullYear()} Luis Alberto Gotopo Quintero · Todos los derechos reservados.
+            {t.footer.rights.replace("{year}", new Date().getFullYear().toString())}
           </p>
           <div className="flex gap-6 text-sm text-[#8898bb]">
-            <a href="#about" className="hover:text-white transition-colors">About</a>
-            <a href="#stack" className="hover:text-white transition-colors">Stack</a>
-            <a href="#contact" className="hover:text-white transition-colors">Contact</a>
+            <a href="#about" className="hover:text-white transition-colors">{t.nav.about}</a>
+            <a href="#stack" className="hover:text-white transition-colors">{t.nav.stack}</a>
+            <a href="#contact" className="hover:text-white transition-colors">{t.nav.contact}</a>
           </div>
         </div>
       </footer>
