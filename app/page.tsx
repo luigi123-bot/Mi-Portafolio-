@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Download, Code2, Monitor, Github, Linkedin, Layers, Phone, ExternalLink, Globe, Cpu } from "lucide-react";
+import { Mail, Download, Code2, Monitor, Github, Linkedin, Layers, Phone, ExternalLink, Globe, Cpu, Box } from "lucide-react";
 
 export default function Home() {
   return (
@@ -276,7 +276,52 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Project 3 – Portafolio */}
+          {/* Project 3 – TechRevive */}
+          <div
+            className="group flex flex-col rounded-2xl border border-[#1e2a5e] p-7 transition-all duration-300 hover:border-[#3d5bd9]/70 hover:shadow-2xl hover:shadow-[#3d5bd9]/10 hover:-translate-y-1"
+            style={{ background: "linear-gradient(145deg, #0f1530, #0c1235)" }}
+          >
+            <div className="mb-6 flex items-center justify-between">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#2a3cad]/20 border border-[#2a3cad]/30 group-hover:bg-[#2a3cad]/40 transition-all">
+                <Monitor className="h-6 w-6 text-[#3d5bd9]" />
+              </div>
+              <div className="flex gap-2">
+                <a
+                  href="https://github.com/luigi123-bot/techrevive.git"
+                  title="Ver código en GitHub"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2a5e] text-[#8898bb] hover:border-[#3d5bd9] hover:text-white transition-all"
+                >
+                  <Github className="h-4 w-4" />
+                </a>
+                <a
+                  href="https://techrevive.privatech.me/"
+                  title="Ver sitio en vivo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2a5e] text-[#8898bb] hover:border-[#3d5bd9] hover:text-white transition-all"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+            <div className="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-0.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <span className="text-xs font-medium text-emerald-400">Completado</span>
+            </div>
+            <h3 className="mb-2 text-lg font-bold text-white">TechRevive</h3>
+            <p className="mb-5 flex-1 text-sm leading-relaxed text-[#8898bb]">
+              Plataforma de soluciones informativas y soporte técnico. Ofrece guías, herramientas y recursos para la optimización de sistemas y resolución de problemas.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {["Next.js", "TypeScript", "Tailwind CSS", "Lucide"].map((t) => (
+                <span key={t} className="rounded-md border border-[#1e2a5e]/80 bg-[#2a3cad]/10 px-3 py-1 text-xs text-[#6580e0]">{t}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* Project 4 – Portafolio */}
           <div
             className="group flex flex-col rounded-2xl border border-[#1e2a5e] p-7 transition-all duration-300 hover:border-[#3d5bd9]/70 hover:shadow-2xl hover:shadow-[#3d5bd9]/10 hover:-translate-y-1"
             style={{ background: "linear-gradient(145deg, #0f1530, #0c1235)" }}
@@ -308,7 +353,7 @@ export default function Home() {
             </div>
             <div className="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-0.5">
               <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse" />
-              <span className="text-xs font-medium text-blue-400">En producción</span>
+              <span className="text-xs font-medium text-blue-400">Completado</span>
             </div>
             <h3 className="mb-2 text-lg font-bold text-white">Portafolio Personal</h3>
             <p className="mb-5 flex-1 text-sm leading-relaxed text-[#8898bb]">
@@ -316,6 +361,51 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap gap-2">
               {["Next.js", "TypeScript", "Tailwind v4", "Shadcn"].map((t) => (
+                <span key={t} className="rounded-md border border-[#1e2a5e]/80 bg-[#2a3cad]/10 px-3 py-1 text-xs text-[#6580e0]">{t}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* Project 5 – Thiart 3D */}
+          <div
+            className="group flex flex-col rounded-2xl border border-[#1e2a5e] p-7 transition-all duration-300 hover:border-[#3d5bd9]/70 hover:shadow-2xl hover:shadow-[#3d5bd9]/10 hover:-translate-y-1"
+            style={{ background: "linear-gradient(145deg, #0f1530, #0c1235)" }}
+          >
+            <div className="mb-6 flex items-center justify-between">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#2a3cad]/20 border border-[#2a3cad]/30 group-hover:bg-[#2a3cad]/40 transition-all">
+                <Box className="h-6 w-6 text-[#3d5bd9]" />
+              </div>
+              <div className="flex gap-2">
+                <a
+                  href="https://github.com/luigi123-bot/thiartd-3d2.git"
+                  title="Ver código en GitHub"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2a5e] text-[#8898bb] hover:border-[#3d5bd9] hover:text-white transition-all"
+                >
+                  <Github className="h-4 w-4" />
+                </a>
+                <a
+                  href="https://thiart3d.netlify.app/"
+                  title="Ver sitio en vivo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1e2a5e] text-[#8898bb] hover:border-[#3d5bd9] hover:text-white transition-all"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+            <div className="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-0.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <span className="text-xs font-medium text-emerald-400">Completado</span>
+            </div>
+            <h3 className="mb-2 text-lg font-bold text-white">Thiart 3D</h3>
+            <p className="mb-5 flex-1 text-sm leading-relaxed text-[#8898bb]">
+              Plataforma para la exhibición de proyectos de arte 3D y diseño. Una experiencia inmersiva que combina creatividad digital con tecnologías web modernas.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {["React", "Three.js", "Tailwind CSS", "Vite"].map((t) => (
                 <span key={t} className="rounded-md border border-[#1e2a5e]/80 bg-[#2a3cad]/10 px-3 py-1 text-xs text-[#6580e0]">{t}</span>
               ))}
             </div>
